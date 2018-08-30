@@ -13,15 +13,16 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, :class=>"form-control"  %>
   </div>
 
   <div class="field">
     <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%= form.text_field :link, :class=>"form-control"  %>
   </div>
 
   <div class="field">
+
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
@@ -31,6 +32,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class =>  "btn btn-primary" %>
   </div>
 <% end %>
