@@ -7,14 +7,14 @@
     <%= f.submit "Reply" %>
 
     <% if (current_user && (current_user.id == @post.user_id)) %>
-    <%= link_to 'Edit', @comment %>
-    <%= link_to 'Destroy',
+    <%= link_to 'Edit', edit_post_comment_path %>
+    <%= link_to 'Destroy', method: :delete %>
     <% end %>
 
 
     <% end %>
 
     <ul>
-        <%+ render partial: 'comments/comment', collection: comment.comments %>
+        <%= render partial: 'comments/comment', collection: comment.comments %>
     <ul>
 </li>
