@@ -1,5 +1,7 @@
 <h1>Edit Your Post</h1>
 
+<% if (current_user && (current_user.id == @post.user_id %>
+
 <%= render 'form', post: @post %>
 
 <%= link_to 'Show', @post %> |
