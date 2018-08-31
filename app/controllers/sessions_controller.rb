@@ -5,7 +5,7 @@ def create
 
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    redirect_to sessions_new
+    redirect_to posts_path
   else
     flash[:error_message] = "Something went wrong!!!!. Please try again!"
     redirect_to users_new_path
