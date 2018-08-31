@@ -8,8 +8,8 @@
 <div><%= link_to "Create Login", new_user_path %> </div>
  <br>
 <div> 
-  <% if !current_user.nil? %>
-    <%= link_to "Log Out", edit_session_path %>
+  <% if current_user %>
+    <%= link_to "Log Out", session_path, method: :delete %>
   <% end %>
 </div>
 <br>
