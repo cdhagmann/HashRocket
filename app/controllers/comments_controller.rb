@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def new 
+    redirect_to posts_path, notice: 'You must be logged in to comment' if !(current_user)
     @comment = Comment.new 
   end 
 
@@ -16,11 +17,10 @@ class CommentsController < ApplicationController
   end
 
   def edit 
-    @comment = Comment.find(params[:id])
+    redirect_to posts_path, notice: 'You must be the author of this comment to edit it'  if !(current_user.id == @post.user_id) 
   end  
 
   def update 
-    @comment = Comment.find(params[:id])
 
     if @comment.update(comment_params)
       redirect_to post_path, notice: 'Comment was successfully updated.'
