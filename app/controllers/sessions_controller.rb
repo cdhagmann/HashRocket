@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
   
 def create
-  user = User.find_by_email(params[:email])
+  user = User.find_by_username(params[:username])
 
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    redirect_to sessions_new
+    redirect_to posts_path
   else
     flash[:error_message] = "Something went wrong!!!!. Please try again!"
-    redirect_to users_new_path
-    # redirect_to posts_path
+    render 'new'
+   
   end
 end
 
