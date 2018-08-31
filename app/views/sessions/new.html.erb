@@ -7,7 +7,7 @@
 <p class="alert alert-danger"><%= flash[:error_message] %></p>
 <% end %>
 <%= form_with(url: session_path) do %>
-    <%=label_tag :username %>
+    <%=label_tag :user %>
     <%=text_field_tag :username %>
     <%=label_tag :password %>
     <%=password_field_tag :password %>
