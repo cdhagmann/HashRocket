@@ -2,7 +2,7 @@
   <div class="container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-info pb-2 mb-0">Posts for <%= current_user.username%> </h6>
-      <% posts.sort_by(&:created_at).each do |post| %>
+      <% posts.sort_by(&:score).reverse.each do |post| %>
         <div class="media text-muted pt-3">
           <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3 mr-3">
             <% if current_user && Upvote.where('user_id=?', current_user.id).where('post_id=?', post.id).length == 0 %>
@@ -45,8 +45,7 @@
               </small>
             <% end %>
                       <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
-            <%# <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
-            <% if true %>
+            <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
               <%= link_to '<i class="fas fa-trash"></i>'.html_safe, post, method: :delete, data: {confirm: 'Are you sure?'} %>
               <br>
               <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_path(post) %>
