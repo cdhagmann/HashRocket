@@ -12,11 +12,13 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    redirect_to posts_path, notice: 'You must be logged in to add a new post' if !(current_user)
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    redirect_to posts_path, notice: 'You must be the author of this post to edit it'  if !(current_user.id == @post.user_id)
   end
 
   # POST /posts

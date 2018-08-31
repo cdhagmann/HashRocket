@@ -9,6 +9,12 @@ class UpvotesController < ApplicationController
     end
   end
 
+  def destroy
+    @upvote = Upvote.find(params[:id])
+    @upvote.destroy
+    redirect_to posts_url
+  end
+
   private
     def secure_params
       params.permit(:user_id, :post_id)
