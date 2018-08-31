@@ -12,11 +12,13 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    redirect_to posts_path, notice: 'You must be logged in to add a new post' if !(current_user)
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    redirect_to posts_path, notice: 'You must be the author of this post to edit it'  if !(current_user.id == @post.user_id)
   end
 
   # POST /posts
@@ -31,7 +33,6 @@ class PostsController < ApplicationController
   end
 
   # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
   def update
     if @post.update(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
@@ -41,12 +42,10 @@ class PostsController < ApplicationController
   end
 
   # DELETE /posts/1
-  # DELETE /posts/1.json
   def destroy
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

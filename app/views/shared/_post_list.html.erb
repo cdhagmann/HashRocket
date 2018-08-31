@@ -1,17 +1,23 @@
 <main role="main">
   <div class="container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-info pb-2 mb-0">Posts</h6>
-      <% posts.sort_by(&:created_at).each do |post| %>
+      <h6 class="border-bottom border-info pb-2 mb-0">Posts for <%= current_user.username if current_user%> </h6>
+      <% posts.sort_by(&:score).reverse.each do |post| %>
         <div class="media text-muted pt-3">
           <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3 mr-3">
-            <%# <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
-            <% if true %>
-            <%= link_to '<i class="fas fa-sort-up"></i>'.html_safe, post, method: :delete, data: {confirm: 'Are you sure?'} %>
-            25
-            <%# <% elsif current_user  %>
-            <i class="fas fa-sort-up text-info"></i>
-            <span class='text-info'>26</span>
+            <% if current_user && Upvote.where('user_id=?', current_user.id).where('post_id=?', post.id).length == 0 %>
+              <%= form_with(url: upvotes_path, local: true) do |f| %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                <%= button_tag type: 'submit', class: "fake-button", id: "register-button" do %>
+                  <i class="fas fa-sort-up" aria-hidden="true"></i>
+                <% end %>
+                <br>
+                <%= post.score %>
+              <% end %>
+            <% elsif current_user %>
+              <%= link_to '<i class="fas fa-sort-up text-info"></i>'.html_safe, upvote_path(Upvote.where('user_id=?', current_user.id).where('post_id=?', post.id)[0]), method: :delete %>
+              <span class='text-info'><%= post.score %></span>
             <% end %>
           </div>
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-info">
@@ -19,7 +25,8 @@
             <%= post.description %>
             <br>
             <% if (Time.now - post.updated_at).to_i < 60 %>
-              <small class="text-muted text-center">Posted <%= (Time.now - post.created_at).to_i %> sec. ago by @<%= User.find(post.user_id).username %>
+              <small class="text-muted text-center">Posted <%= (Time.now - post.created_at).to_i %> sec. ago by
+                @<%= User.find(post.user_id).username %>
               </small>
             <% elsif (Time.now - post.updated_at).to_i < 3600 %>
               <small class="text-muted text-center">Posted <%= (Time.now - post.created_at).to_i / 60 %> min.
@@ -31,20 +38,20 @@
               </small>
             <% else %>
               <small class="text-muted text-center">Last
-                updated <%= (Time.now - post.updated_at).to_i / (3600 * 24) %> day(s) ago by @<%= User.find(post.user_id).username %>
+                updated <%= (Time.now - post.updated_at).to_i / (3600 * 24) %> day(s) ago by
+                @<%= User.find(post.user_id).username %>
               </small>
             <% end %>
-                      <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
-            <%# <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
-            <% if true %>
-              <%= link_to '<i class="fas fa-trash"></i>'.html_safe, post, method: :delete, data: {confirm: 'Are you sure?'} %>
-              <br>
-              <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_path(post) %>
-            <% end %>
-          </div>
+            <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
+              <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
+                <%= link_to '<i class="fas fa-trash text-danger"></i>'.html_safe, post, method: :delete, data: {confirm: 'Are you sure?'} %>
+                <br>
+                <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_path(post) %>
+              <% end %>
+            </div>
             </p>
 
-        </div>
+            </div>
       <% end %>
     </div>
   </div>
