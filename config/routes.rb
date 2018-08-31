@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'upvote/create'
-  get 'upvote/destroy'
-  get 'sessions/new'
-  get 'users/new'
-  get 'users/show'
-  get 'user/new'
-  get 'user/show'
+  resources :posts do
+    resources :upvotes, only: [:create, :destroy]
+    resources :comments
+  end 
 
-  root "users#new"
+  resources :users
 
-  
-  resources :sessions, :users
+  root 'posts#index'
+  resource :session, only: [:new, :create, :destroy]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
