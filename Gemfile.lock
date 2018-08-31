@@ -199,10 +199,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
   autoprefixer-rails
-=======
->>>>>>> 63b810a1411fbee2e602e6699205e1b079bf5d72
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.1.1)
