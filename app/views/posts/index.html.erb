@@ -4,7 +4,19 @@
 
 <h1>Welcome to Hash Rocket</h1>
 
+<div><%= link_to "Login", new_session_path %> </div>
+<div><%= link_to "Create Login", new_user_path %> </div>
+ <br>
+<div> 
+  <% if current_user %>
+    <%= link_to "Log Out", session_path, method: :delete %>
+  <% end %>
+</div>
+<br>
+  
+<div>
 <%= render 'shared/post_list', posts: @posts %>
+</div>
 
 <br>
 
