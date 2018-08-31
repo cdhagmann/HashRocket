@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to books_url, notice:  "You've created a new account!! Please log in."
+      redirect_to sessions_url, notice:  "You've created a new account!! Please log in."
     else
       render 'new'
     end
