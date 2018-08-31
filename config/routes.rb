@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   resources :posts do
-    resources :upvotes, only: [:create, :destroy]
     resources :comments
-  end 
-
+  end
+   
+  resources :upvotes, only: [:create, :destroy]
   resources :users
 
   root 'posts#index'
