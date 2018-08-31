@@ -3,7 +3,7 @@ class UpvotesController < ApplicationController
     @upvote = Upvote.new(secure_params)
     @upvote.post = Post.find(params[:post_id])
     if @upvote.save
-      redirect_to @upvote.post 
+      redirect_to posts_url
     else  
       redirect_to posts_url, notice: 'Cannot upvote the same post more than once.' 
     end
