@@ -13,20 +13,32 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, :class=>"form-control"  %>
   </div>
 
   <div class="field">
     <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%= form.text_field :link, :class=>"form-control"  %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.label :description %>
+    <%= form.text_field :description %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="field">
+    <%= form.hidden_field :user_id, :value => current_user.id %>
   </div>
+
+  
+  <div class="actions">
+    <%= form.submit :class =>  "btn btn-primary" %>
+  </div>
+
+  <section class="section comments">
+    <div class="container">
+      
+
+
+
 <% end %>
