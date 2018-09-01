@@ -1,3 +1,26 @@
-<h1>Users#show</h1>
 
-<%= render 'form' %>
+ <%# recover last comment from posts file for the users %>
+<% @posts=@user.posts%> 
+
+<% @user.posts.any? do %>
+
+
+   
+<%= render 'shared/post_list', posts: @posts %>
+</div>
+ <%end%>
+
+ <h1>User Profile</h1>
+<p>
+ <strong>Name:</strong>
+<%= @user.username %>
+</p>   
+<p>
+ <strong>Created:</strong>
+<%= @user.created_at%>
+</p>  
+<p>
+<strong>Number of Post: <%= @posts.count%> </strong>
+
+
+
