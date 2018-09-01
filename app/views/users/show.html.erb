@@ -12,14 +12,15 @@
 <% uid=@user.posts.last%>
    <p><strong>Last Post:</strong>
    <%= uid.title %></p> 
-   <%uid_id = uid.post_id%>
+   <%# <%uid_id = uid.post_id%> %>
    <%# recover votes of the last comment %>
-      <% @user.upvotes.include?(upvotes.find(uid_id)) do %>
-        <% uid2=posts.upvotes%>
+      <%# <% @user.upvotes.include?(upvotes.find(uid_id)) do %>
+        <%# <% uid2=posts.upvotes%> %>
         <%# <% uid = title.votes %> 
             <p><strong>Votes:</strong> 
-            <% uid2.upvotes %> </p> 
+            <%# <% uid2.upvotes %> </p>  %> %>
             
- <%end%>
+ <%# <%end%> %>
  <%end %>
-<%# <%= render 'form' 'shared/post_list' %>  
+ <%# <%= render 'form'  %> 
+ 
