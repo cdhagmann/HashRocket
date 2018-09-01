@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params) 
 
     if @comment.save
-      redirect_to post_path, notice: 'Comment was successfully created.'
+      redirect_to comment_path, notice: 'Comment was successfully created.'
     else
       render :new 
     end

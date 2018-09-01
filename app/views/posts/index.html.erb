@@ -13,11 +13,9 @@
   <% end %>
 </div>
 <br>
-  
+
+<div><%= link_to 'New Post', new_post_path %></div>
+
 <div>
 <%= render 'shared/post_list', posts: @posts %>
 </div>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
