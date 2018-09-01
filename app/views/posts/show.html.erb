@@ -1,5 +1,5 @@
 <nav class="d-flex justify-content-between navbar navbar-expand-md fixed-top navbar-dark bg-info mb-4">
-  <%= link_to 'HashRocket', posts_path, :class => 'navbar-brand' %>
+  <%= link_to '⇗HashRocket', posts_path, :class => 'navbar-brand' %>
   <div class="form-inline mt-md-0 btn-group">
     <% if !current_user %>
       <%= link_to "Login", new_session_path, :class => 'btn btn-outline-light' %>
@@ -7,7 +7,7 @@
     <% else %>
       <%= link_to 'New Post', new_post_path, :class => 'btn text-info btn-light' %>
       <%= link_to "Log Out", session_path, method: :delete, :class => 'btn btn-outline-light' %>
-      <%= link_to "@" + current_user.username, current_user, :class => 'btn btn-outline-light' %>
+      <%= link_to "⇗" + current_user.username, current_user, :class => 'btn btn-outline-light' %>
     <% end %>
   </div>
 </nav>
@@ -50,7 +50,7 @@
         <% else %>
           <%= (Time.now - @post.updated_at).to_i / (3600 * 24) %> days ago
         <% end %>
-        by <%= link_to "@" + User.find(@post.user_id).username, User.find(@post.user_id), :style => 'font-size:.75rem' %>
+        by <%= link_to "⇗" + User.find(@post.user_id).username, User.find(@post.user_id), :style => 'font-size:.75rem' %>
       </small>
     <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
       <% if current_user && (current_user.id == @post.user_id || current_user.id == 1) %>
@@ -63,48 +63,30 @@
   </div>
 </div>
 
-<%= link_to 'Create a Comment', new_comment_path %>
+<h2>Comments</h2>
 
-
-<%= form_with(url: comments_path, local: true) do |form| %>
+<%= form_with(url: comments_path, local: true, :html => {:class => 'form-row col-lg-12 ml-3'}) do |form| %>
   
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_field :comment %>
+  <div class="form-group mx-3 mb-2">
+    
+    <%= form.text_area :comment, :class => 'form-control-lg' %>
   </div>
 
-  <div class="field">
     <%= form.hidden_field :user_id, :value => current_user.id %>
-  </div>
-
-    <div class="field">
     <%= form.hidden_field :post_id, :value => @post.id %>
-  </div>
 
   <div class="actions">
-    <%= form.submit :class =>  "btn btn-primary" %>
+    <%= form.submit :class =>  "btn btn-info btn-block" %>
   </div>
 <% end %>
 
 <br>
 
-<%= link_to 'Back', posts_path %>
-
-<% if (current_user && (current_user.id == @post.user_id)) %>
-
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-
-<% end %>
-
-<h2>Comments</h2>
-
-
-
   <% @post.comments.sort_by(&:created_at).each do |comment| %>
   <div class="media text-muted pl-3 ml-3 pt-3">
     <div class='ml-3 pl-3'></div>
     <p class="media-body ml-3 mb-0 small lh-125 border-bottom border-info">
-      <strong class="d-block text-gray-dark"><%= link_to "@" + User.find(comment.user_id).username, User.find(comment.user_id)%></strong>
+      <strong class="d-block text-gray-dark"><%= link_to "⇗" + User.find(comment.user_id).username, User.find(comment.user_id)%></strong>
       <%= comment.comment %>
       <br>
       <small class="text-muted text-center">Posted
@@ -119,17 +101,13 @@
         <% end %>
       </small>
     <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
-      <% if current_user && (current_user.id == @post.user_id || current_user.id == 1) %>
-        <%= link_to '<i class="fas fa-trash text-danger"></i>'.html_safe, @post, method: :delete, data: {confirm: 'Are you sure?'} %>
-        <br>
-        <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_path(@post) %>
+      <% if current_user && (current_user.id == comment.user_id || current_user.id == 1) %>
+        <%= link_to '<i class="fas fa-trash text-danger"></i>'.html_safe, comment, method: :delete, data: {confirm: 'Are you sure?'} %>
       <% end %>
     </div>
     </p>
   </div>
 <% end %>
-
-
 
 
 

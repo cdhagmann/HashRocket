@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def edit 
-    redirect_to posts_path, notice: 'You must be the author of this comment to edit it'  if !(current_user.id == @post.user_id) 
+    redirect_to posts_path
   end  
 
   def update 

@@ -1,7 +1,7 @@
 <main role="main">
   <div class="container">
     <div class="my-3 p-3 bg-white">
-      <h6 class="border-bottom border-info pb-2 mb-0">Trending Posts</h6>
+      <h6 class="border-bottom border-info pb-2 mb-0">Posts</h6>
       <% posts.sort_by(&:score).reverse.each do |post| %>
         <div class="media text-muted pt-3">
           <div class="d-flex justify-content-center align-items-center flex-column align-center text-center mx-3">
@@ -36,7 +36,7 @@
               <% else %>
                 <%= (Time.now - post.updated_at).to_i / (3600 * 24) %> days ago
               <% end %>
-              by <%= link_to "@" + User.find(post.user_id).username, User.find(post.user_id), :style => 'font-size:.75rem' %>
+              by <%= link_to "⇗" + User.find(post.user_id).username, User.find(post.user_id), :style => 'font-size:.75rem' %>
             </small>
           <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
             <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
