@@ -37,7 +37,7 @@
       <% end %>
     </div>
     <p class="media-body mb-0 small lh-125 border-bottom border-info">
-      <strong class="d-block text-gray-dark"><a href=<%= @post.link %> ><%=@post.title%></a></strong>
+      <strong class="d-block text-gray-dark"><a href=<%= @post.link %>><%= @post.title %></a></strong>
       <%= @post.description %>
       <br>
       <small class="text-muted text-center">Posted
@@ -67,27 +67,27 @@
 
 <% if current_user %>
   <%= form_with(url: comments_path, local: true, :html => {:class => 'form-row col-lg-12 ml-3'}) do |form| %>
-    
+
     <div class="form-group mx-3 mb-2">
-      
+
       <%= form.text_area :comment, :class => 'form-control-lg' %>
     </div>
 
-      <%= form.hidden_field :user_id, :value => current_user.id %>
-      <%= form.hidden_field :post_id, :value => @post.id %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <%= form.hidden_field :post_id, :value => @post.id %>
 
     <div class="actions">
-      <%= form.submit :class =>  "btn btn-info btn-block" %>
+      <%= form.submit :class => "btn btn-info btn-block" %>
     </div>
   <% end %>
 
 <% end %>
 
-  <% @post.comments.sort_by(&:created_at).each do |comment| %>
+<% @post.comments.sort_by(&:created_at).each do |comment| %>
   <div class="media text-muted pl-3 ml-3 pt-3">
     <div class='ml-3 pl-3'></div>
     <p class="media-body ml-3 mb-0 small lh-125 border-bottom border-info">
-      <strong class="d-block text-gray-dark"><%= link_to "⇗" + User.find(comment.user_id).username, User.find(comment.user_id)%></strong>
+      <strong class="d-block text-gray-dark"><%= link_to "⇗" + User.find(comment.user_id).username, User.find(comment.user_id) %></strong>
       <%= comment.comment %>
       <br>
       <small class="text-muted text-center">Posted
