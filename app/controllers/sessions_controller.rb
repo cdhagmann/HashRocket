@@ -8,8 +8,7 @@ def create
     redirect_to posts_path
   else
     flash[:error_message] = "Invalid username and/or password."
-    render 'new'
-   
+    redirect_to new_session_path
   end
 end
 
