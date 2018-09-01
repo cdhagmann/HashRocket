@@ -63,42 +63,24 @@
   </div>
 </div>
 
-<%= link_to 'Create a Comment', new_comment_path %>
+<h2>Comments</h2>
 
-
-<%= form_with(url: comments_path, local: true) do |form| %>
+<%= form_with(url: comments_path, local: true, :html => {:class => 'form-row col-lg-12 ml-3'}) do |form| %>
   
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_field :comment %>
+  <div class="form-group mx-3 mb-2">
+    
+    <%= form.text_area :comment, :class => 'form-control-lg' %>
   </div>
 
-  <div class="field">
     <%= form.hidden_field :user_id, :value => current_user.id %>
-  </div>
-
-    <div class="field">
     <%= form.hidden_field :post_id, :value => @post.id %>
-  </div>
 
   <div class="actions">
-    <%= form.submit :class =>  "btn btn-primary" %>
+    <%= form.submit :class =>  "btn btn-info btn-block" %>
   </div>
 <% end %>
 
 <br>
-
-<%= link_to 'Back', posts_path %>
-
-<% if (current_user && (current_user.id == @post.user_id)) %>
-
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-
-<% end %>
-
-<h2>Comments</h2>
-
-
 
   <% @post.comments.sort_by(&:created_at).each do |comment| %>
   <div class="media text-muted pl-3 ml-3 pt-3">
@@ -119,10 +101,8 @@
         <% end %>
       </small>
     <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
-      <% if current_user && (current_user.id == @post.user_id || current_user.id == 1) %>
-        <%= link_to '<i class="fas fa-trash text-danger"></i>'.html_safe, @post, method: :delete, data: {confirm: 'Are you sure?'} %>
-        <br>
-        <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_path(@post) %>
+      <% if current_user && (current_user.id == comment.user_id || current_user.id == 1) %>
+        <%= link_to '<i class="fas fa-trash text-danger"></i>'.html_safe, comment, method: :delete, data: {confirm: 'Are you sure?'} %>
       <% end %>
     </div>
     </p>
