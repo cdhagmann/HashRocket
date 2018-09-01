@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to posts_path, notice:  "You've created a new account!! Please log in."
+      redirect_to user_path
     else
       render 'new'
     end
