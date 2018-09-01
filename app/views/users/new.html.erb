@@ -1,22 +1,35 @@
-<div class="container col-md-offset-6">
-<h1 class='text-left'>Sign up</h1>
+<nav class="d-flex justify-content-between navbar navbar-expand-md fixed-top navbar-dark bg-info mb-4">
+  <%= link_to 'Hash Rocket', posts_path, :class => 'navbar-brand' %>
 
-<div class="row ">
-  <div class="col-md-6 ">
-    <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
+</nav>
 
-      <%= f.label :username %>
-      <%= f.text_field :username, class: 'form-control' %>
+<h1 class='h3 mt-5 mb-3 font-weight-normal text-center'>Sign Up</h1>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+<%= form_with(model: @user, local: true, :html => {:class => 'form-signin col-md-6 offset-md-3'}) do |form| %>
+  <%= render 'shared/error_messages' %>
 
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %>
+  <div class="form-group">
+    <%= form.label :username %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">@</div>
+      </div>
+      <%= form.text_field :username, :class => "form-control", :placeholder => 'username' %>
+    </div>
   </div>
+
+  <div class="form-group">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: 'form-control' %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= form.label :password_confirmation, "Confirmation" %>
+    <%= form.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
+
+  <%= form.submit "Create my account", :class => "btn btn-lg btn-info btn-block" %>
+  <p class="mt-5 mb-3 text-muted">HashRocket &copy; 2018</p>
+<% end %>

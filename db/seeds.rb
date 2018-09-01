@@ -14,18 +14,25 @@ user.password = "admin"
 user.save
 
 
-9.times do
+299.times do
   user = User.new
   user.username = Faker::Internet.username
   user.password = "user"
   user.save
 end
 
-50.times do
+25.times do
   Post.create(
     title: Faker::Lorem.sentence, 
     description: Faker::Lorem.paragraph,
     link: Faker::Internet.url,
     user_id: 1 + rand(10),
+  )
+end
+
+500.times do
+  Upvote.create(
+    user_id: 1 + rand(300), 
+    post_id: 1 + rand(25)
   )
 end
