@@ -1,7 +1,7 @@
 <main role="main">
   <div class="container">
     <div class="my-3 p-3 bg-white">
-      <h6 class="border-bottom border-info pb-2 mb-0">Trending Posts</h6>
+      <h6 class="border-bottom border-info pb-2 mb-0">Posts</h6>
       <% posts.sort_by(&:score).reverse.each do |post| %>
         <div class="media text-muted pt-3">
           <div class="d-flex justify-content-center align-items-center flex-column align-center text-center mx-3">

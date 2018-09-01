@@ -2,25 +2,41 @@
  <%# recover last comment from posts file for the users %>
 <% @posts=@user.posts%> 
 
+<nav class="d-flex justify-content-between navbar navbar-expand-md fixed-top navbar-dark bg-info mb-4">
+  <a class="navbar-brand" href="#">HashRocket</a>
+  <div class="form-inline mt-md-0 btn-group">
+    <% if !current_user %>
+      <%= link_to "Login", new_session_path, :class => 'btn btn-outline-light' %>
+      <%= link_to "Sign Up", new_user_path, :class => 'btn btn-outline-light' %>
+    <% else %>
+      <%= link_to 'New Post', new_post_path, :class => 'btn text-info btn-light' %>
+      <%= link_to "Log Out", session_path, method: :delete, :class => 'btn btn-outline-light' %>
+      <%= link_to "@" + current_user.username, current_user, :class => 'btn btn-outline-light' %>
+    <% end %>
+  </div>
+</nav>
+
+<% if notice %>
+  <p class="alert alert-success mt-5" role="alert"><%= notice %></p>
+<% end %>
+
+
+
+<main role="main" class="container">
+  <div class="jumbotron">
+    <h1>@<%=@user.username%></h1>
+    <p class="lead">Members since <%= @user.created_at.year %>.</p>
+    <strong>Number of Post: <%= @posts.count%> </strong>
+  </div>
+</main>
+
+
 <% @user.posts.any? do %>
 
-
-   
-<%= render 'shared/post_list', posts: @posts %>
+<div class='mt-5'>
+  <%= render 'shared/post_list', posts: @posts %>
 </div>
+
  <%end%>
-
- <h1>User Profile</h1>
-<p>
- <strong>Name:</strong>
-<%= @user.username %>
-</p>   
-<p>
- <strong>Created:</strong>
-<%= @user.created_at%>
-</p>  
-<p>
-<strong>Number of Post: <%= @posts.count%> </strong>
-
 
 
