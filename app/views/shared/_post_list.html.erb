@@ -36,7 +36,7 @@
               <% else %>
                 <%= (Time.now - post.updated_at).to_i / (3600 * 24) %> days ago
               <% end %>
-              by <%= link_to "@" + User.find(post.user_id).username, User.find(post.user_id), :style => 'font-size:.75rem' %>
+              by <%= link_to "⇗" + User.find(post.user_id).username, User.find(post.user_id), :style => 'font-size:.75rem' %>
             </small>
           <div class="d-flex justify-content-center align-items-center flex-column align-center ml-3">
             <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
