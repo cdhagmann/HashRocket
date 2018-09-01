@@ -1,18 +1,25 @@
-<h1>Users#show</h1>
+<h1>User Profile</h1>
 <p>
  <strong>Name:</strong>
-<%= @user.name%>
+<%= @user.username %>
 </p>   
 <p>
  <strong>Created:</strong>
 <%= @user.created_at%>
 </p>  
-<p>
- <%# <strong>Votes:</strong> %>
-<%# <%= @xxx.votes%> %>
-</p>
-<p>
- <%# <strong>Last Post:</strong> %>
-<%# <%= @yy.post%> %>
-</p>  
-<%= render 'form' %>
+ <%# recover last comment from posts file for the users %>
+<% @user.posts.any? do %>
+<% uid=@user.posts.last%>
+   <p><strong>Last Post:</strong>
+   <%= uid.title %></p> 
+   <%uid_id = uid.post_id%>
+   <%# recover votes of the last comment %>
+      <% @user.upvotes.include?(upvotes.find(uid_id)) do %>
+        <% uid2=posts.upvotes%>
+        <%# <% uid = title.votes %> 
+            <p><strong>Votes:</strong> 
+            <% uid2.upvotes %> </p> 
+            
+ <%end%>
+ <%end %>
+<%# <%= render 'form' 'shared/post_list' %>  
