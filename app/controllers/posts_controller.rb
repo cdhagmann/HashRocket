@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully launch.'
+      redirect_to @post, notice: 'Post was successfully launched.'
     else
       render :new 
     end
