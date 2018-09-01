@@ -1,6 +1,18 @@
-<h1>Create a New Post</h1>
+<nav class="d-flex justify-content-between navbar navbar-expand-md fixed-top navbar-dark bg-info mb-4">
+  <%= link_to '⇗HashRocket', posts_path, :class => 'navbar-brand' %>
+  <div class="form-inline mt-md-0 btn-group">
+    <% if !current_user %>
+      <%= link_to "Login", new_session_path, :class => 'btn btn-outline-light' %>
+      <%= link_to "Sign Up", new_user_path, :class => 'btn btn-outline-light' %>
+    <% else %>
+      <%= link_to "Log Out", session_path, method: :delete, :class => 'btn btn-outline-light' %>
+      <%= link_to "⇗" + current_user.username, current_user, :class => 'btn btn-outline-light' %>
+    <% end %>
+  </div>
+</nav>
+
+<h1 class='h3 mb-3 font-weight-normal text-center' style='margin-top: 75px'>Create a New Post</h1>
 
 <%= render 'form', post: @post %>
 
 
-<%= link_to 'Back', posts_path %>

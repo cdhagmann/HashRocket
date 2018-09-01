@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @post, notice: 'Post was successfully launch.'
     else
       render :new 
     end
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_url, notice: 'Post was successfully destructed.' }
     end
   end
 
