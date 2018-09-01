@@ -1,8 +1,9 @@
 
  <%# recover last comment from posts file for the users %>
- 
+<% @posts=@user.posts%> 
+
 <% @user.posts.any? do %>
-<% @posts=@user.posts%>
+
 
    
 <%= render 'shared/post_list', posts: @posts %>
@@ -19,11 +20,7 @@
 <%= @user.created_at%>
 </p>  
 <p>
-<% if @posts_params == nil %>
- <strong>Number of Post: 0 </strong>
-</p>  
-<%else%>
-<strong>Number of Post: </strong>
- <%= @posts.count%>
-<%end%>
+<strong>Number of Post: <%= @posts.count%> </strong>
+
+
 

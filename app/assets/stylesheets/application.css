@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+  font-size: 16px;
+ }
+
+ .btn-group a {
+   color: #fafafa;
+ }

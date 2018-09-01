@@ -1,23 +1,22 @@
-<%if notice %>
-  <p id="notice" class="alert alert-success" role="alert"><%= notice %></p>
+<nav class="d-flex justify-content-between navbar navbar-expand-md fixed-top navbar-dark bg-info mb-4">
+  <a class="navbar-brand" href="#">Hash Rocket</a>
+  <div class="form-inline mt-md-0 btn-group">
+    <% if !current_user %>
+      <%= link_to "Login", new_session_path, :class => 'btn btn-outline-light' %>
+      <%= link_to "Sign Up", new_user_path, :class => 'btn btn-outline-light' %>
+    <% else %>
+      <%= link_to 'New Post', new_post_path, :class => 'btn text-info btn-light' %>
+      <%= link_to "Log Out", session_path, method: :delete, :class => 'btn btn-outline-light' %>
+      <%= link_to "@" + current_user.username, current_user, :class => 'btn btn-outline-light' %>
+    <% end %>
+  </div>
+</nav>
+
+<% if notice %>
+  <p class="alert alert-success mt-5" role="alert"><%= notice %></p>
 <% end %>
 
-<h1>Welcome to Hash Rocket</h1>
-
-<div><%= link_to "Login", new_session_path %> </div>
-<div><%= link_to "Create Login", new_user_path %> </div>
- <br>
-<div> 
-  <% if current_user %>
-    <%= link_to "Log Out", session_path, method: :delete %>
-  <% end %>
-</div>
-<br>
-  
-<div>
-<%= render 'shared/post_list', posts: @posts %>
+<div class='mt-5'>
+  <%= render 'shared/post_list', posts: @posts %>
 </div>
 
-<br>
-
-<%= link_to 'New Post', new_post_path %>
