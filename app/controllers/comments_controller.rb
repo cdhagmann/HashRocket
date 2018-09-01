@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params) 
 
     if @comment.save
-      redirect_to @comment.post, notice: 'Comment was successfully created.'
+      redirect_to @comment.post, notice: 'Comment was successfully launched.'
     else
       render :new 
     end
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   def destroy 
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to post_path, notice: 'comment was successfully destroyed.' }
+      format.html { redirect_to post_path, notice: 'Comment was successfully destructed.' }
     end
   end   
 
