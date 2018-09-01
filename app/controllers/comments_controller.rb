@@ -1,16 +1,17 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  
 
   def new 
-    redirect_to posts_path, notice: 'You must be logged in to comment' if !(current_user)
+    redirect_to post_path, notice: 'You must be logged in to comment' if !(current_user)
     @comment = Comment.new 
   end 
-
+  
   def create 
     @comment = Comment.new(comment_params) 
 
     if @comment.save
-      redirect_to post_path, notice: 'Comment was successfully created.'
+      redirect_to @comment.post, notice: 'Comment was successfully created.'
     else
       render :new 
     end
@@ -44,7 +45,7 @@ def set_comment
 end
 
 def comment_params
-  params.require(:comment).permit(:post, :user, :comment)
+  params.permit(:post_id, :user_id, :comment)
 end
 
 end
