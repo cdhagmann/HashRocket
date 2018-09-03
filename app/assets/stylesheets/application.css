@@ -21,3 +21,16 @@
  .btn-group a {
    color: #fafafa;
  }
+
+ body {
+   background-color: #fafafa;
+   color: #333;
+   font-family: verdana, arial, helvetica, sans-serif;
+   line-height: 18px;
+ }
+
+ a {
+   color: #333333;
+ }
+
+ 
