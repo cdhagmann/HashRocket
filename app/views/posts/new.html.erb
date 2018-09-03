@@ -1,6 +1,6 @@
-<nav class="d-flex justify-content-between navbar navbar-expand-md fixed-top navbar-dark bg-info mb-4">
-  <%= link_to '⇗HashRocket', posts_path, :class => 'navbar-brand' %>
-  <div class="form-inline mt-md-0 btn-group">
+<nav class="d-flex flex-column justify-content-centerjustify-content-lg-between flex-lg-row navbar fixed-top navbar-dark bg-info">
+  <%= link_to '⇗HashRocket', root_path, :class => 'navbar-brand' %>
+  <div class="btn-group">
     <% if !current_user %>
       <%= link_to "Login", new_session_path, :class => 'btn btn-outline-light' %>
       <%= link_to "Sign Up", new_user_path, :class => 'btn btn-outline-light' %>
@@ -11,7 +11,7 @@
   </div>
 </nav>
 
-<h1 class='h3 mb-3 font-weight-normal text-center' style='margin-top: 75px'>Create a New Post</h1>
+<h1 class='h3 mb-3 font-weight-normal text-center mt-5'>Create a New Post</h1>
 
 <%= render 'form', post: @post %>
 
