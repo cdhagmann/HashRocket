@@ -31,10 +31,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy 
+    post = @comment.post
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to post_path, notice: 'Comment was successfully destructed.' }
-    end
+    redirect_to post, notice: 'Comment was successfully destructed.' 
   end   
 
 
