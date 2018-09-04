@@ -15,7 +15,7 @@ Build a Rails application that works like [Reddit](https://www.reddit.com/), all
 - A user can sign out.
 - Posts can be viewed by anyone, but only signed-in users can comment or vote.
 - Styling should look intentional, but does not have to be elaborate. You can use Bootstrap or Shoelace for styling if you want.
-- Deploy this application to Heroku.
+- Deploy this application to Heroku.[⇗HashRocket](https://hash-rocket.herokuapp.com/)
 
 ## Extra features
 
