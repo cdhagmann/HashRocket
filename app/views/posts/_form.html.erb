@@ -1,8 +1,8 @@
 <%= form_with(model: post, local: true, :html => {:class => 'form-signin col-md-6 offset-md-3'}) do |form| %>
   <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@post.errors.count, "error") %>.
+    </div>
       <ul>
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title, :class => "form-control", :placeholder => 'ex. Space X' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :link %>
     <%= form.text_field :link, :class => "form-control", :placeholder => 'ex. https://www.spacex.com/' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
     <%= form.text_area :description, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.hidden_field :user_id, :value => current_user.id %>
   </div>
 
