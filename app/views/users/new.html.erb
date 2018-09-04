@@ -1,5 +1,10 @@
-<nav class="d-flex flex-column justify-content-centerjustify-content-lg-between flex-lg-row navbar fixed-top navbar-dark bg-info">
+<nav class="d-flex flex-column justify-content-center justify-content-lg-between flex-lg-row navbar fixed-top navbar-dark bg-info">
   <%= link_to '⇗HashRocket', root_path, :class => 'navbar-brand' %>
+  <div class="btn-group">
+    <% if !current_user %>
+      <%= link_to "Login", new_session_path, :class => 'btn btn-outline-light' %>
+    <% end %>
+  </div>
 </nav>
 
 <h1 class='h3 mt-5 mb-3 font-weight-normal text-center'>Sign Up</h1>
