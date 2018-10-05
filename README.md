@@ -1,5 +1,7 @@
 # Rails-Reddit
 
+[⇗HashRocket](https://hash-rocket.herokuapp.com/)
+
 Build a Rails application that works like [Reddit](https://www.reddit.com/), allowing users to post news links, vote for them, and comment on them.
 
 ## Requirements
@@ -15,7 +17,7 @@ Build a Rails application that works like [Reddit](https://www.reddit.com/), all
 - A user can sign out.
 - Posts can be viewed by anyone, but only signed-in users can comment or vote.
 - Styling should look intentional, but does not have to be elaborate. You can use Bootstrap or Shoelace for styling if you want.
-- Deploy this application to Heroku.[⇗HashRocket](https://hash-rocket.herokuapp.com/)
+- Deploy this application to Heroku.
 
 ## Extra features
 
