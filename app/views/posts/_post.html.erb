@@ -1,0 +1,26 @@
+<div class="media text-muted pt-2">
+  <%= render 'upvotes/counter', post: post %>
+  <div class='d-flex media-body border-bottom border-info'>
+    <p class="media-body mb-0 pb-2">
+      <strong class="d-block text-gray-dark"><%= link_to post.title, post.link %></strong>
+      <%= post.description %>
+      <br>
+      <small class="text-muted text-center">Posted
+        <%= timestamp_to_words(post.created_at) %>
+        by <%= link_to "⇗" + User.find(post.user_id).username, User.find(post.user_id), :style => 'font-size:.75rem' %>
+        | <%= link_to post.comments.count.to_s + ' comment(s)', post, :style => 'font-size:.75rem' %>
+      </small>
+    </p>
+    <div class="d-inline-flex justify-content-between align-items-center flex-column align-center">
+      <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
+        <%= link_to post, method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <i class="fas fa-trash text-danger"></i>
+        <% end %>
+        <%= link_to edit_post_path(post) do %>
+          <i class="fas fa-pen"></i>
+        <% end %>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>

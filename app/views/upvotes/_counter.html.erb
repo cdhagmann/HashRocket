@@ -1,0 +1,24 @@
+<%
+  upvote = Upvote.find_by(user: current_user, post: post)
+%>
+
+<div class="d-flex justify-content-center align-items-center flex-column align-center text-center mx-3 h-100" style='width: 5%'>
+  <% if current_user && upvote.blank? %>
+    <%= form_with(url: upvotes_path, local: true) do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :post_id, value: post.id %>
+      <%= button_tag type: 'submit', class: "fake-button", id: "register-button" do %>
+        &nbsp;<i class="fas fa-sort-up" aria-hidden="true"/> </i>
+      <% end %>
+      <br>
+      <span class='text-gray-dark'><%= post.score %></span>
+    <% end %>
+  <% elsif current_user %>
+    <%= link_to upvote_path(upvote.id), method: :delete do %>
+      <i class="fas fa-sort-up text-info"></i>
+    <% end %>
+    <%= tag.span post.score, class: 'text-info' %>
+  <% else %>
+    <%= tag.span post.score, class: 'text-gray-dark mt-3' %>
+  <% end %>
+</div>
