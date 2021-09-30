@@ -7,15 +7,15 @@
     <%= form_with(url: upvotes_path, local: true) do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :post_id, value: post.id %>
-      <%= button_tag type: 'submit', class: "fake-button", id: "register-button" do %>
-        &nbsp;<i class="fas fa-sort-up" aria-hidden="true"/> </i>
+      <%= button_tag type: 'submit', class: "fake-button" do %>
+        <%= fa_icon('fas fa-sort-up') %>
       <% end %>
       <br>
       <span class='text-gray-dark'><%= post.score %></span>
     <% end %>
   <% elsif current_user %>
     <%= link_to upvote_path(upvote.id), method: :delete do %>
-      <i class="fas fa-sort-up text-info"></i>
+      <%= fa_icon('fas fa-sort-up text-info') %>
     <% end %>
     <%= tag.span post.score, class: 'text-info' %>
   <% else %>
