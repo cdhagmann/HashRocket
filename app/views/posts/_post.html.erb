@@ -14,10 +14,10 @@
     <div class="d-inline-flex justify-content-between align-items-center flex-column align-center">
       <% if current_user && (current_user.id == post.user_id || current_user.id == 1) %>
         <%= link_to post, method: :delete, data: {confirm: 'Are you sure?'} do %>
-          <i class="fas fa-trash text-danger"></i>
+          <%= fa_icon('fas fa-trash text-danger') %>
         <% end %>
         <%= link_to edit_post_path(post) do %>
-          <i class="fas fa-pen"></i>
+          <%= fa_icon('fas fa-pen') %>
         <% end %>
         <br>
       <% end %>
