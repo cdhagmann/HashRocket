@@ -5,7 +5,7 @@
       <% posts.sort_by(&:score).reverse.each do |post| %>
         <div class="media text-muted pt-2">
           <div class="d-flex justify-content-center align-items-center flex-column align-center text-center mx-3 h-100" style='width: 5%'>
-            <% if current_user && Upvote.where('user_id=?', current_user.id).where('post_id=?', post.id).length == 0 %>
+            <% if current_user && Upvote.find_by(user: current_user, post: post).blank? %>
               <%= form_with(url: upvotes_path, local: true) do |f| %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.hidden_field :post_id, value: post.id %>
@@ -16,7 +16,7 @@
                 <span class='text-gray-dark'><%= post.score %></span>
               <% end %>
             <% elsif current_user %>
-              <%= link_to '<i class="fas fa-sort-up text-info"></i>'.html_safe, upvote_path(Upvote.where('user_id=?', current_user.id).where('post_id=?', post.id)[0]), method: :delete %>
+              <%= link_to '<i class="fas fa-sort-up text-info"></i>'.html_safe, upvote_path(Upvote.find_by(user: current_user, post: post).id), method: :delete %>
               <span class='text-info'><%= post.score %></span>
             <% else %>
               <span class='text-gray-dark mt-3'><%= post.score %></span>
