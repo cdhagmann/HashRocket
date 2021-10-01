@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include ActionView::Helpers::Tags
   include ActionView::Helpers::TagHelper

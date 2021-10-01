@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: %i[show edit update destroy]
 
   def new
-    redirect_to post_path, notice: 'You must be logged in to comment' if !(current_user)
+    redirect_to post_path, notice: 'You must be logged in to comment' unless current_user
     @comment = Comment.new
   end
 

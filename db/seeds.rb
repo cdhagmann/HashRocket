@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -10,29 +12,28 @@ require 'faker'
 
 user = User.new
 user.username = 'admin'
-user.password = "admin"
+user.password = 'admin'
 user.save
-
 
 299.times do
   user = User.new
   user.username = Faker::Internet.username
-  user.password = "user"
+  user.password = 'user'
   user.save
 end
 
 25.times do
   Post.create(
-    title: Faker::Lorem.sentence, 
+    title: Faker::Lorem.sentence,
     description: Faker::Lorem.paragraph,
     link: Faker::Internet.url,
-    user_id: 1 + rand(10),
+    user_id: rand(1..10)
   )
 end
 
 500.times do
   Upvote.create(
-    user_id: 1 + rand(300), 
-    post_id: 1 + rand(25)
+    user_id: rand(1..300),
+    post_id: rand(1..25)
   )
 end

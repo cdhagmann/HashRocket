@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpvotesController < ApplicationController
   def create
     @upvote = Upvote.new(secure_params)
